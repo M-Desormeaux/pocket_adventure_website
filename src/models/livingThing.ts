@@ -1,6 +1,6 @@
 import type { AllBiasesType } from "./biases";
 
-export interface livingThing {
+export interface livingThingType {
   name: string;
   species: string;
   biases: AllBiasesType[];
@@ -30,7 +30,7 @@ export class LivingThing {
     weight,
     heightUnits = "ft",
     weightUnits = "lbs",
-  }: livingThing) {
+  }: livingThingType) {
     this.name = name;
     this.species = species;
     this.biases = biases;

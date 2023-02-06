@@ -1,54 +1,29 @@
-const bias = [
-  "water",
-  "earth",
-  "fire",
-  "air",
-  "ice",
-  "metal",
-  "lightning",
-  "sound",
-  "dark",
-  "light",
-  "void",
-];
-type Bias = typeof bias[keyof typeof bias];
+import { Attributes, Bias, Item, Nullish, Size, Skills } from "@/types";
+import { ok } from "assert";
 
-const size = ["tiny", "small", "medium", "large", "giant", "massive", "titan"];
-type Size = typeof size[keyof typeof size];
-
-interface Attributes {
-  // TODO finish this type and move it elsewhere
-  [key: string]: number;
+export interface PersonConstructorType {
+  isNPC?: boolean;
+  name: string;
+  alias?: Nullish<string>[];
+  background: string;
+  species: string;
+  bias: Bias[];
+  age: number;
+  size: Size;
+  gender: string;
 }
 
-interface Skills {
-  // TODO finish this ttype too and move it elsewhere
-  [key: string]: number;
-}
-
-interface Item {
-  // TODO finish this ttype too and move it elsewhere
-  isConsumable: boolean;
-  title: string;
-  description: string;
-  [key: string]: number;
-}
-
-interface PersonType {
-  [key: string]: number;
-}
-
-interface Equipment {
-  mainHand: Item;
-  offHand: Item;
-  Armor: Item;
+export interface Equipment {
+  mainHand: Nullish<Item>;
+  offHand: Nullish<Item>;
+  Armor: Nullish<Item>;
   // Accessories? TBD
 }
 
 class Person {
   isNPC = false;
   name: string;
-  alias: string[];
+  alias: Nullish<string>[] = [];
   background: string;
   species: string;
   bias: Bias[];
@@ -56,51 +31,51 @@ class Person {
   size: Size;
   gender: string;
 
-  hitPoints: number;
-  manaPoints: number;
+  hitPoints: number = 0;
+  manaPoints: number = 0;
 
-  evasion: number;
-  movement: number;
+  evasion: number = 0;
+  movement: number = 0;
 
-  attributes: Attrubutes = {
-    strength,
-    endurance,
-    agility,
-    intellect,
-    willpower,
-    charisma,
+  attributes: Attributes = {
+    strength: 0,
+    endurance: 0,
+    agility: 0,
+    intellect: 0,
+    willpower: 0,
+    charisma: 0,
   };
   skills: Skills = {
-    athletics,
-    survival,
-    acrobatics,
-    stealth,
-    history,
-    investigate,
-    mythology,
-    nature,
-    arcana,
-    barter,
-    deceive,
-    persuade,
+    athletics: 0,
+    survival: 0,
+    acrobatics: 0,
+    stealth: 0,
+    history: 0,
+    investigate: 0,
+    mythology: 0,
+    nature: 0,
+    arcana: 0,
+    barter: 0,
+    deceive: 0,
+    persuade: 0,
   };
 
-  languages: string[];
+  languages: Nullish<string>[] = [];
   equipment: Equipment = {
-    mainHand: Item,
-    offHand: Item,
-    Armor: Item,
+    mainHand: null,
+    offHand: null,
+    Armor: null,
     // Accessories? TBD
   };
-  loot: Item[];
+  loot: Nullish<Item>[] = [];
 
-  constructor() {
-    // TODO: add random character functionality
-    throw new Error("RANDOM CHARACTER FEATURE NOT IMPLIMENTED");
-  }
+  // constructor() {
+  //   // TODO: add random character functionality
+  //   // TODO: add planned character functionality
+  //   throw new Error("RANDOM CHARACTER FEATURE NOT IMPLIMENTED");
+  // }
 
   constructor({
-    isNPC,
     name,
     alias,
     background,
@@ -109,7 +84,18 @@ class Person {
     age,
     size,
     gender,
-  }) {
-    throw new Error("SIMPLE CHARACTER FEATURE NOT IMPLIMENTED");
+    isNPC,
+  }: PersonConstructorType) {
+    if (alias) {
+      this.alias = alias;
+    }
+
+    this.name = name;
+    this.background = background;
+    this.species = species;
+    this.bias = bias;
+    this.age = age;
+    this.size = size;
+    this.gender = gender;
   }
 }

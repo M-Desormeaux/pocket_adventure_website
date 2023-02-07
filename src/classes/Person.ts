@@ -1,5 +1,4 @@
 import { Attributes, Bias, Item, Nullish, Size, Skills } from "@/types";
-import { ok } from "assert";
 
 export interface PersonConstructorType {
   isNPC?: boolean;

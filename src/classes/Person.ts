@@ -74,6 +74,7 @@ class Person {
   //   throw new Error("RANDOM CHARACTER FEATURE NOT IMPLIMENTED");
   // }
 
+  //#region basic constructor for Players
   constructor({
     name,
     alias,
@@ -96,5 +97,17 @@ class Person {
     this.age = age;
     this.size = size;
     this.gender = gender;
+  }
+  //#endregion
+
+  //#region Random constructor
+  constructor() {
+    this.name = "Jane Doe";
+    this.background = "farmer";
+    this.species = "human";
+    this.bias = ["water"];
+    this.age = 26;
+    this.size = "medium";
+    this.gender = "female";
   }
 }
